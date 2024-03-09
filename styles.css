@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    position: relative;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.question-header {
+    font-weight: bold;
+    margin-bottom: 10px; /* Space between the question and the answer options */
+}
+
+/* Ensure radio buttons and their labels are on separate lines */
+.question label {
+    display: block; /* This will put each answer option on a new line */
+    margin-left: 20px; /* Indents answer options for better readability */
+    cursor: pointer; /* Indicates that the label is clickable */
+    margin-top: 5px; /* Adds a little space above each answer option */
+}
+
+.timer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}

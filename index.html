@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to Quiz</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="timerSettings">
+        Timer (mm:ss): <input type="text" id="timerDuration" placeholder="e.g., 1:30">
+    </div>
+    <input type="file" id="csvFileInput" accept=".csv">
+    <div id="questionContainer"></div>
+    <button id="scoreButton">Check Score</button>
+    <div id="result"></div>
+    <div id="timer" class="timer"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
