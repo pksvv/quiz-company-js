@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV to Quiz</title>
+    <title>Quiz App</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="timerSettings">
-        Timer (mm:ss): <input type="text" id="timerDuration" placeholder="e.g., 1:30" value="1:00">
+    <h1>Quiz Time!</h1>
+    <div class="container">
+        <div id="timerSettings">
+            Timer (mm:ss): <input type="text" id="timerDuration" placeholder="e.g., 1:30" value="1:00">
+        </div>
+        <input type="file" id="csvFileInput" accept=".csv">
+        <div id="questionContainer"></div>
+        <button id="scoreButton">Check Score</button>
+        <div id="result"></div>
+        <div id="scoreCounter">Check Score Clicked: 0 times</div>
+        <div id="timer" class="timer"></div>
     </div>
-    <input type="file" id="csvFileInput" accept=".csv">
-    <div id="questionContainer"></div>
-    <button id="scoreButton">Check Score</button>
-    <div id="result"></div>
-    <div id="timer" class="timer"></div>
 
     <script src="./script.js"></script>
 </body>

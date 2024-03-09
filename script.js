@@ -63,7 +63,19 @@ function generateQuestions(rows) {
     });
 }
 
+let scoreCheckCount = 0; // Counter for the score check clicks
+
+
 document.getElementById('scoreButton').addEventListener('click', function() {
+
+    scoreCheckCount++;
+    document.getElementById('scoreCounter').textContent = `Check Score Clicked: ${scoreCheckCount} times`;
+    
+    // Play three beeps
+    for (let i = 0; i < 3; i++) {
+        setTimeout(playBeep, i * 600);
+    }
+
     const questions = document.querySelectorAll('#questionContainer .question');
     let score = 0;
     questions.forEach(question => {
@@ -118,4 +130,18 @@ function playHighPitchTone() {
     oscillator.connect(context.destination);
     oscillator.start();
     oscillator.stop(context.currentTime + 2); // Stop after 2 seconds
+}
+
+function playBeep() {
+    let context = new (window.AudioContext || window.webkitAudioContext)();
+    let oscillator = context.createOscillator();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(880, context.currentTime); // Value in hertz
+    oscillator.connect(context.destination);
+    oscillator.start();
+
+    setTimeout(() => {
+        oscillator.stop();
+        context.close();
+    }, 200);
 }
