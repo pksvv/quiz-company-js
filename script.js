@@ -11,6 +11,7 @@ document.getElementById('csvFileInput').addEventListener('change', function(e) {
     reader.readAsText(file);
 });
 
+
 function parseCSV(text) {
     let rows = text.split('\n').filter(row => row.trim());
     let parsedRows = rows.map(row => {
@@ -39,29 +40,6 @@ function parseCSV(text) {
 
 function generateQuestions(rows) {
     const container = document.getElementById('questionContainer');
-    container.innerHTML = '';
-    rows.forEach((row, index) => {
-        if (row.length < 7) {
-            console.error('Invalid row:', row);
-            return;
-        }
-        const [sno, question, a, b, c, d, correct] = row;
-        const questionHtml = `
-            <div class="question" data-correct="${correct.trim()}">
-                <div class="question-header">${question}</div>
-                <label><input type="radio" name="question${index}" value="a"> ${a}</label>
-                <label><input type="radio" name="question${index}" value="b"> ${b}</label>
-                <label><input type="radio" name="question${index}" value="c"> ${c}</label>
-                <label><input type="radio" name="question${index}" value="d"> ${d}</label>
-            </div>
-        `;
-        container.insertAdjacentHTML('beforeend', questionHtml);
-    });
-}
-
-
-function generateQuestions(rows) {
-    const container = document.getElementById('questionContainer');
     container.innerHTML = ''; // Clear previous questions
 
     rows.forEach((row, index) => {
@@ -70,9 +48,10 @@ function generateQuestions(rows) {
             return;
         }
 
-        const [sno, question, a, b, c, d, correct] = row;
+        // Make sure to trim each entry to avoid any whitespace issues
+        const [sno, question, a, b, c, d, correct] = row.map(entry => entry.trim());
         const questionHtml = `
-            <div class="question">
+            <div class="question" data-correct="${correct}">
                 <div class="question-header">Question ${sno}: ${question}</div>
                 <label><input type="radio" name="question${sno}" value="a"> ${a}</label>
                 <br><label><input type="radio" name="question${sno}" value="b"> ${b}</label>
@@ -84,15 +63,13 @@ function generateQuestions(rows) {
     });
 }
 
-
 document.getElementById('scoreButton').addEventListener('click', function() {
     const questions = document.querySelectorAll('#questionContainer .question');
     let score = 0;
     questions.forEach(question => {
-        const correctAnswer = question.dataset.correct;
+        const correctAnswer = question.getAttribute('data-correct');
         const selectedAnswer = question.querySelector('input[type="radio"]:checked');
-        
-        // Reset background for all options
+
         question.querySelectorAll('label').forEach(label => {
             label.style.backgroundColor = ""; // Reset to default
         });
@@ -109,6 +86,7 @@ document.getElementById('scoreButton').addEventListener('click', function() {
 
     document.getElementById('result').textContent = `Your score is: ${score}/${questions.length}`;
 });
+
 
 function startTimer() {
     const timerInput = document.getElementById('timerDuration').value.split(':');
