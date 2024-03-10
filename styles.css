@@ -6,7 +6,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     background-color: #f7f7f7;
     color: #333;
     line-height: 1.6;
@@ -17,13 +17,15 @@ body {
     max-width: 800px;
     margin: auto;
     overflow: auto;
-    padding: 0 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
 }
 
 /* Style for the header/title */
 h1 {
     text-align: center;
-    margin: 40px 0;
     color: #333;
 }
 
@@ -31,13 +33,13 @@ h1 {
 #timerSettings {
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
+    margin-bottom: 20px;
 }
 
 #timerDuration {
     font-size: 16px;
     padding: 5px;
-    width: 80px;
+    width: 100px;
     margin-left: 10px;
     border: 2px solid #ddd;
     border-radius: 5px;
@@ -45,12 +47,9 @@ h1 {
 
 /* Questions and options layout */
 .question {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
     margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .question-header {
@@ -60,51 +59,8 @@ h1 {
 
 /* Answer label styling */
 .question label {
+    margin-bottom: 10px;
     display: block;
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 8px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect for answer labels */
-.question label:hover {
-    background: #e9e9e9;
-}
-
-/* Custom radio button */
-.question input[type="radio"] {
-    display: none;
-}
-
-.question label:before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border-radius: 50%;
-    border: 3px solid #ddd;
-    vertical-align: middle;
-}
-
-.question input[type="radio"]:checked + label {
-    background: #e1f4e5;
-}
-
-.question input[type="radio"]:checked + label:before {
-    background: #34d399;
-    border-color: #34d399;
-}
-
-/* Score and timer display */
-#result, .timer, #scoreCounter {
-    text-align: center;
-    font-size: 22px;
-    margin-top: 20px;
 }
 
 /* Button styling */
@@ -113,23 +69,30 @@ button {
     width: 100%;
     padding: 10px;
     border: none;
-    background: #5c7cfa;
-    color: white;
-    font-size: 18px;
+    background-color: #007bff;
+    color: #ffffff;
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    font-size: 16px;
     border-radius: 5px;
+    margin-top: 20px;
 }
 
 button:hover {
-    opacity: 0.7;
+    background-color: #0056b3;
+}
+
+/* Score and timer display */
+#result, .timer, #scoreCounter {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
 }
 
 /* Positioning the timer to the top right */
 .timer {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     background: #fff;
     padding: 10px 20px;
     border-radius: 50px;

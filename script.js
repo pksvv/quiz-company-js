@@ -63,14 +63,12 @@ function generateQuestions(rows) {
     });
 }
 
-let scoreCheckCount = 0; // Counter for the score check clicks
-
+let scoreCheckCount = 0;
 
 document.getElementById('scoreButton').addEventListener('click', function() {
-
     scoreCheckCount++;
     document.getElementById('scoreCounter').textContent = `Check Score Clicked: ${scoreCheckCount} times`;
-    
+
     // Play three beeps
     for (let i = 0; i < 3; i++) {
         setTimeout(playBeep, i * 600);
@@ -135,13 +133,16 @@ function playHighPitchTone() {
 function playBeep() {
     let context = new (window.AudioContext || window.webkitAudioContext)();
     let oscillator = context.createOscillator();
+    let gainNode = context.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(880, context.currentTime); // Value in hertz
-    oscillator.connect(context.destination);
-    oscillator.start();
-
-    setTimeout(() => {
-        oscillator.stop();
-        context.close();
-    }, 200);
+    gainNode.gain.setValueAtTime(gainNode.gain.value, context.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 0.5);
+    
+    oscillator.start(context.currentTime);
+    oscillator.stop(context.currentTime + 0.5); // Stop after 500 milliseconds
 }
